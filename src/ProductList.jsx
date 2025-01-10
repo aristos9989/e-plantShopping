@@ -9,7 +9,7 @@ function ProductList() {
     const [addedToCart, setAddedToCart] = useState({});
     const [totalQuantity, setTotalQuantity] = useState(0);
     const dispatch = useDispatch();
-    
+
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -295,7 +295,12 @@ function ProductList() {
                                         <div className='product-title'>{plant.name}</div>
                                         <div className='product-description'>{plant.description}</div>
                                         <div className='product-cost'>{plant.cost}</div>
-                                        <button className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`} onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]}>{addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}</button>
+                                        <button
+                                            className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`}
+                                            onClick={() => handleAddToCart(plant)}
+                                            disabled={addedToCart[plant.name]}>
+                                            {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
+                                        </button>
                                     </div>
                                 ))}
                             </div>
@@ -303,7 +308,7 @@ function ProductList() {
                     ))}
                 </div>
             ) : (
-                <CartItem onContinueShopping={handleContinueShopping} updateTotalQuantity={updateTotalQuantity}/>
+                <CartItem onContinueShopping={handleContinueShopping} updateTotalQuantity={updateTotalQuantity} setAddedToCart={setAddedToCart} />
             )}
         </div>
     );
